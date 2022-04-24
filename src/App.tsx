@@ -1,14 +1,35 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import Main from "./components/Main";
+import styled from "styled-components";
+import Figure from "./components/Figure";
+import Home from "./components/Home";
+import About from "./components/About";
+import Contact from "./components/Contact";
+
+const AppWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 90vw;
+  max-width: 1200px;
+  margin-inline: auto;
+`;
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route index element={<div>Works</div>}></Route>
-        <Route path="about" element={<div>About</div>}></Route>
-        <Route path="contact" element={<div>Contact</div>}></Route>
-      </Routes>
-    </BrowserRouter>
+    <AppWrapper>
+      <Header></Header>
+      <Main>
+        <Routes>
+          <Route index element={<Home></Home>}></Route>
+          <Route path="about" element={<About></About>}></Route>
+          <Route path="contact" element={<Contact></Contact>}></Route>
+        </Routes>
+      </Main>
+      <Footer></Footer>
+    </AppWrapper>
   );
 };
 
