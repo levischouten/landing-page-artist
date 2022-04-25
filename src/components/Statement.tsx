@@ -6,10 +6,9 @@ const About = () => {
     <div>
       <Title>Artist statement</Title>
       <Paragraph>
-        Artist Statement (EN) - Ivo Schouten Ivo Schouten’s artwork is
-        characterized by his clear composition, sleek lines, and modular
-        components that the artist brings to life in his two- and
-        three-dimensional pieces.
+        Ivo Schouten’s artwork is characterized by his clear composition, sleek
+        lines, and modular components that the artist brings to life in his two-
+        and three-dimensional pieces.
       </Paragraph>
       <Paragraph>
         Each work arises from the artist’s clear ideas about form and color

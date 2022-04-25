@@ -42,13 +42,17 @@ const MenuItem = styled.li`
   text-decoration: none;
 `;
 
-const LinkWrapper = styled(Link)`
+interface LinkWrapperProps {
+  underline?: boolean;
+}
+
+const LinkWrapper = styled(Link)<LinkWrapperProps>`
   text-decoration: none;
   color: black;
   padding-bottom: 5px;
 
   &:hover {
-    text-decoration: underline;
+    text-decoration: ${(props) => (props.underline ? "underline" : "none")};
     text-underline-offset: 3px;
   }
 `;
@@ -58,7 +62,9 @@ const Header = () => {
 
   return (
     <HeaderWrapper>
-      <Title>Ivo Schouten</Title>
+      <Title>
+        <LinkWrapper to="/">Ivo Schouten</LinkWrapper>
+      </Title>
       {menuIsActive ? (
         <MenuIcon
           onClick={() => setMenuIsActive(!menuIsActive)}
@@ -77,13 +83,19 @@ const Header = () => {
       {menuIsActive && (
         <Menu>
           <MenuItem>
-            <LinkWrapper to="/">Home</LinkWrapper>
+            <LinkWrapper underline to="/">
+              Home
+            </LinkWrapper>
           </MenuItem>
           <MenuItem>
-            <LinkWrapper to="/about">About</LinkWrapper>
+            <LinkWrapper underline to="/statement">
+              Statement
+            </LinkWrapper>
           </MenuItem>
           <MenuItem>
-            <LinkWrapper to="/contact">Contact</LinkWrapper>
+            <LinkWrapper underline to="/contact">
+              Contact
+            </LinkWrapper>
           </MenuItem>
         </Menu>
       )}

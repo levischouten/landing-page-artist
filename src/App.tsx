@@ -3,9 +3,8 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Main from "./components/Main";
 import styled from "styled-components";
-import Figure from "./components/Figure";
 import Home from "./components/Home";
-import About from "./components/About";
+import Statement from "./components/Statement";
 import Contact from "./components/Contact";
 
 const AppWrapper = styled.div`
@@ -24,7 +23,7 @@ const App = () => {
       <Main>
         <Routes>
           <Route index element={<Home></Home>}></Route>
-          <Route path="about" element={<About></About>}></Route>
+          <Route path="statement" element={<Statement></Statement>}></Route>
           <Route path="contact" element={<Contact></Contact>}></Route>
         </Routes>
       </Main>
