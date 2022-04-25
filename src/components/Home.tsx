@@ -73,8 +73,8 @@ const Home = () => {
   };
 
   const carouselItems = [
-    "./images/150-1_web.jpg",
-    "./images/150-2_web.jpg",
+    "./images/3X3-1_web.jpg",
+    "./images/3X3-2_web.jpg",
     "./images/150-1_web.jpg",
     "./images/150-2_web.jpg",
   ].map((item, index) => (

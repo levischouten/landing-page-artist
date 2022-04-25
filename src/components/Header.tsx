@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { MutableRefObject, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 
@@ -73,9 +73,41 @@ const LinkWrapper = styled(Link)<LinkWrapperProps>`
   }
 `;
 
+const useOutsideAlert = (
+  ref: MutableRefObject<HTMLOListElement>,
+  callback: () => void,
+  refs?: Array<MutableRefObject<HTMLElement>>
+) => {
+  useEffect(() => {
+    function handleClickOutside(event: any) {
+      if (
+        ref.current &&
+        !ref.current.contains(event.target) &&
+        !refs?.some((r) => r.current.contains(event.target))
+      ) {
+        callback();
+      }
+    }
+    // Bind the event listener
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      // Unbind the event listener on clean up
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [ref, callback, refs]);
+};
+
 const Header = () => {
   const [menuIsActive, setMenuIsActive] = useState(false);
-
+  const menuRef = useRef<HTMLOListElement>(null);
+  const menuIcon = useRef<HTMLButtonElement>(null);
+  useOutsideAlert(
+    menuRef as MutableRefObject<HTMLOListElement>,
+    () => {
+      setMenuIsActive(false);
+    },
+    [menuIcon as MutableRefObject<HTMLElement>]
+  );
   return (
     <HeaderWrapper>
       <Title>
@@ -83,6 +115,7 @@ const Header = () => {
       </Title>
       {menuIsActive ? (
         <MenuIcon
+          ref={menuIcon}
           onClick={() => setMenuIsActive(!menuIsActive)}
           className="material-icons"
         >
@@ -90,6 +123,7 @@ const Header = () => {
         </MenuIcon>
       ) : (
         <MenuIcon
+          ref={menuIcon}
           onClick={() => setMenuIsActive(!menuIsActive)}
           className="material-icons"
         >
@@ -97,7 +131,7 @@ const Header = () => {
         </MenuIcon>
       )}
       {menuIsActive && (
-        <Menu>
+        <Menu ref={menuRef}>
           <MenuItem>
             <LinkWrapper underline to="/">
               Home
