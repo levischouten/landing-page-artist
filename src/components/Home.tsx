@@ -1,4 +1,4 @@
-import { KeyboardEvent, KeyboardEventHandler, useState } from "react";
+import { KeyboardEvent, useState } from "react";
 import styled, { keyframes } from "styled-components";
 
 const HomeWrapper = styled.div`
@@ -50,9 +50,10 @@ const CarouselPrev = styled(CarouselControl)``;
 const CarouselNext = styled(CarouselControl)``;
 
 const Image = styled.img`
-  display: inline-block;
-  width: 100%;
-  height: 500px;
+  display: block;
+  margin-inline: auto;
+  max-width: 90%;
+  max-height: 90%;
   object-fit: cover;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   cursor: pointer;
@@ -72,9 +73,10 @@ const Home = () => {
   };
 
   const carouselItems = [
-    "https://images.pexels.com/photos/11866150/pexels-photo-11866150.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260",
-    "https://images.pexels.com/photos/3630161/pexels-photo-3630161.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
-    "https://images.pexels.com/photos/3606871/pexels-photo-3606871.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+    "./images/150-1_web.jpg",
+    "./images/150-2_web.jpg",
+    "./images/150-1_web.jpg",
+    "./images/150-2_web.jpg",
   ].map((item, index) => (
     <CarouselItem key={item} active={index === slideIndex}>
       <Image alt="wallpaper" src={item} onClick={incrementSlideIndex}></Image>

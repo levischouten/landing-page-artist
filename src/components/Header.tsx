@@ -1,6 +1,17 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const slide = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(150px);
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+`;
 
 const HeaderWrapper = styled.header`
   height: 150px;
@@ -23,18 +34,23 @@ const MenuIcon = styled.button`
   background-color: transparent;
   border: none;
   padding: 1rem;
+  z-index: 20;
 `;
 
 const Menu = styled.ol`
   position: absolute;
   z-index: 10;
   list-style: none;
-  right: 0px;
-  top: 100px;
+  right: 0;
+  top: 0;
   text-align: right;
   background-color: white;
-  padding: 10px 30px;
-  height: calc(100vh - 140px);
+  padding: 100px 40px;
+  margin: 0;
+  box-sizing: border-box;
+  height: 100vh;
+  box-shadow: rgba(107, 107, 107, 0.1) -20px 0px 20px;
+  animation: ${slide} 0.3s ease-in;
 `;
 
 const MenuItem = styled.li`
