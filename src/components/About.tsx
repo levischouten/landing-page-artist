@@ -1,10 +1,8 @@
 import Paragraph from "./styles/Paragraph";
-import Title from "./styles/Title";
 
 const About = () => {
   return (
     <div>
-      <Title>Artist statement</Title>
       <Paragraph>
         Ivo Schouten’s artwork is characterized by his clear composition, sleek
         lines, and modular components that the artist brings to life in his two-

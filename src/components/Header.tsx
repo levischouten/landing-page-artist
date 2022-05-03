@@ -1,6 +1,7 @@
 import { MutableRefObject, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
+import { useLocation } from "react-router-dom";
 
 const slide = keyframes`
   from {
@@ -14,18 +15,19 @@ const slide = keyframes`
 `;
 
 const HeaderWrapper = styled.header`
-  height: 150px;
-  padding-top: 20px;
-  text-align: center;
+  height: 120px;
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
   position: relative;
+  margin-bottom: 60px;
 `;
 
-const Title = styled.h1`
+const Title = styled(Link)`
   font-weight: 700;
-  font-size: 2.2rem;
+  font-size: 30px;
+  text-decoration: none;
+  color: black;
 `;
 
 const MenuIcon = styled.button`
@@ -33,11 +35,12 @@ const MenuIcon = styled.button`
   font-size: 2.5rem;
   background-color: transparent;
   border: none;
-  padding: 1rem;
+  padding: 0;
   z-index: 20;
+  color: black;
 `;
 
-const Menu = styled.ol`
+const CollapsedMenu = styled.ol`
   position: absolute;
   z-index: 10;
   list-style: none;
@@ -45,12 +48,19 @@ const Menu = styled.ol`
   top: 0;
   text-align: right;
   background-color: white;
-  padding: 100px 40px;
+  padding: 100px 50px;
+  padding-right: 1rem;
   margin: 0;
   box-sizing: border-box;
   height: 100vh;
   box-shadow: rgba(107, 107, 107, 0.1) -20px 0px 20px;
   animation: ${slide} 0.3s ease-in;
+`;
+
+const Menu = styled.ol`
+  display: flex;
+  list-style: none;
+  gap: 4.5rem;
 `;
 
 const MenuItem = styled.li`
@@ -59,17 +69,20 @@ const MenuItem = styled.li`
 `;
 
 interface LinkWrapperProps {
-  underline?: boolean;
+  $underline?: boolean;
+  $active?: boolean;
 }
 
 const LinkWrapper = styled(Link)<LinkWrapperProps>`
-  text-decoration: none;
-  color: black;
+  text-decoration: ${(props) => (props.$active ? "none" : "line-through")};
+  color: ${(props) => (props.$active ? "black" : "#959595")};
   padding-bottom: 5px;
+  font-weight: ${(props) => (props.$active ? 400 : 300)};
+  font-size: 20px;
 
   &:hover {
-    text-decoration: ${(props) => (props.underline ? "underline" : "none")};
     text-underline-offset: 3px;
+    text-decoration: ${(props) => (props.$underline ? "none" : "line-through")};
   }
 `;
 
@@ -88,10 +101,9 @@ const useOutsideAlert = (
         callback();
       }
     }
-    // Bind the event listener
     document.addEventListener("mousedown", handleClickOutside);
+
     return () => {
-      // Unbind the event listener on clean up
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [ref, callback, refs]);
@@ -99,8 +111,24 @@ const useOutsideAlert = (
 
 const Header = () => {
   const [menuIsActive, setMenuIsActive] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const menuRef = useRef<HTMLOListElement>(null);
   const menuIcon = useRef<HTMLButtonElement>(null);
+
+  const handleResize = () => {
+    if (window.innerWidth < 750) {
+      setIsMobile(true);
+    } else {
+      setIsMobile(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+  });
+
+  const { pathname } = useLocation();
+
   useOutsideAlert(
     menuRef as MutableRefObject<HTMLOListElement>,
     () => {
@@ -110,41 +138,91 @@ const Header = () => {
   );
   return (
     <HeaderWrapper>
-      <Title>
-        <LinkWrapper to="/">Ivo Schouten</LinkWrapper>
-      </Title>
-      {menuIsActive ? (
-        <MenuIcon
-          ref={menuIcon}
-          onClick={() => setMenuIsActive(!menuIsActive)}
-          className="material-icons"
-        >
-          menu_open
-        </MenuIcon>
+      <Title to="/">Ivo Schouten</Title>
+      {isMobile ? (
+        <>
+          {menuIsActive ? (
+            <MenuIcon
+              ref={menuIcon}
+              onClick={() => setMenuIsActive(!menuIsActive)}
+              className="material-icons"
+            >
+              menu_open
+            </MenuIcon>
+          ) : (
+            <MenuIcon
+              ref={menuIcon}
+              onClick={() => setMenuIsActive(!menuIsActive)}
+              className="material-icons"
+            >
+              menu
+            </MenuIcon>
+          )}
+          {menuIsActive && (
+            <CollapsedMenu ref={menuRef}>
+              <MenuItem>
+                <LinkWrapper
+                  $underline
+                  to="/"
+                  $active={pathname === "/"}
+                  onClick={() => setMenuIsActive(false)}
+                >
+                  work
+                </LinkWrapper>
+              </MenuItem>
+              <MenuItem>
+                <LinkWrapper
+                  $underline
+                  to="/about"
+                  $active={pathname === "/about"}
+                  onClick={() => setMenuIsActive(false)}
+                >
+                  about
+                </LinkWrapper>
+              </MenuItem>
+              <MenuItem>
+                <LinkWrapper
+                  $underline
+                  to="/contact"
+                  $active={pathname === "/contact"}
+                  onClick={() => setMenuIsActive(false)}
+                >
+                  contact
+                </LinkWrapper>
+              </MenuItem>
+            </CollapsedMenu>
+          )}
+        </>
       ) : (
-        <MenuIcon
-          ref={menuIcon}
-          onClick={() => setMenuIsActive(!menuIsActive)}
-          className="material-icons"
-        >
-          menu
-        </MenuIcon>
-      )}
-      {menuIsActive && (
-        <Menu ref={menuRef}>
+        <Menu>
           <MenuItem>
-            <LinkWrapper underline to="/">
-              Home
+            <LinkWrapper
+              $underline
+              to="/"
+              $active={pathname === "/"}
+              onClick={() => setMenuIsActive(false)}
+            >
+              work
             </LinkWrapper>
           </MenuItem>
           <MenuItem>
-            <LinkWrapper underline to="/statement">
-              Statement
+            <LinkWrapper
+              $underline
+              to="/about"
+              $active={pathname === "/about"}
+              onClick={() => setMenuIsActive(false)}
+            >
+              about
             </LinkWrapper>
           </MenuItem>
           <MenuItem>
-            <LinkWrapper underline to="/contact">
-              Contact
+            <LinkWrapper
+              $underline
+              to="/contact"
+              $active={pathname === "/contact"}
+              onClick={() => setMenuIsActive(false)}
+            >
+              contact
             </LinkWrapper>
           </MenuItem>
         </Menu>

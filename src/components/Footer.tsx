@@ -2,13 +2,19 @@ import styled from "styled-components";
 
 const FooterWrapper = styled.footer`
   height: 120px;
-  text-align: center;
+  text-align: right;
+  font-size: 12px;
+`;
+
+const Paragraph = styled.p`
+  color: #585858;
 `;
 
 const Footer = () => {
   return (
     <FooterWrapper>
-      <p>Copyright Ivo Schouten</p>
+      <hr />
+      <Paragraph>Copyright © 2022</Paragraph>
     </FooterWrapper>
   );
 };

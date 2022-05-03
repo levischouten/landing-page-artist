@@ -4,7 +4,7 @@ import Header from "./components/Header";
 import Main from "./components/Main";
 import styled from "styled-components";
 import Home from "./components/Home";
-import Statement from "./components/Statement";
+import About from "./components/About";
 import Contact from "./components/Contact";
 
 const AppWrapper = styled.div`
@@ -23,7 +23,7 @@ const App = () => {
       <Main>
         <Routes>
           <Route index element={<Home></Home>}></Route>
-          <Route path="statement" element={<Statement></Statement>}></Route>
+          <Route path="about" element={<About></About>}></Route>
           <Route path="contact" element={<Contact></Contact>}></Route>
         </Routes>
       </Main>

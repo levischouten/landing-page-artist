@@ -1,4 +1,4 @@
-import { KeyboardEvent, useState } from "react";
+import { useState } from "react";
 import styled, { keyframes } from "styled-components";
 
 const HomeWrapper = styled.div`
@@ -38,24 +38,12 @@ const CarouselItem = styled.div<CarouselItemProps>`
   margin-inline: auto;
 `;
 
-const CarouselControl = styled.button`
-  padding: 15px;
-  display: block;
-  cursor: pointer;
-  background-color: transparent;
-  border: none;
-`;
-
-const CarouselPrev = styled(CarouselControl)``;
-const CarouselNext = styled(CarouselControl)``;
-
 const Image = styled.img`
   display: block;
   margin-inline: auto;
   max-width: 90%;
   max-height: 90%;
   object-fit: cover;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   cursor: pointer;
 `;
 
@@ -67,10 +55,10 @@ const Home = () => {
     else setSlideIndex(slideIndex + 1);
   };
 
-  const decrementSlideIndex = () => {
-    if (slideIndex <= 0) setSlideIndex(carouselItems.length - 1);
-    else setSlideIndex(slideIndex - 1);
-  };
+  // const decrementSlideIndex = () => {
+  //   if (slideIndex <= 0) setSlideIndex(carouselItems.length - 1);
+  //   else setSlideIndex(slideIndex - 1);
+  // };
 
   const carouselItems = [
     "./images/3X3-1_web.jpg",
@@ -83,20 +71,10 @@ const Home = () => {
     </CarouselItem>
   ));
 
-  const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
-    console.log(event.key);
-  };
-
   return (
-    <HomeWrapper onKeyDown={handleKeyDown}>
+    <HomeWrapper>
       <Carousel>
-        <CarouselPrev onClick={incrementSlideIndex}>
-          <span className="material-icons">arrow_back_ios</span>
-        </CarouselPrev>
         <CarouselItems>{carouselItems}</CarouselItems>
-        <CarouselNext onClick={decrementSlideIndex}>
-          <span className="material-icons">arrow_forward_ios</span>
-        </CarouselNext>
       </Carousel>
     </HomeWrapper>
   );
