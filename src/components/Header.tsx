@@ -30,14 +30,27 @@ const Title = styled(Link)`
   color: black;
 `;
 
-const MenuIcon = styled.button`
-  cursor: pointer;
-  font-size: 2.5rem;
-  background-color: transparent;
-  border: none;
-  padding: 0;
+const MenuIcon = styled.div`
+  display: grid;
+  border: 1px solid black;
+  width: 2rem;
+  height: 2rem;
   z-index: 20;
-  color: black;
+  cursor: pointer;
+`;
+
+const MenuIconClosed = styled(MenuIcon)`
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+`;
+
+const MenuIconOpen = styled(MenuIcon)`
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(1, 1fr);
+`;
+
+const MenuIconClosedItem = styled.div`
+  border: 1px solid black;
 `;
 
 const CollapsedMenu = styled.ol`
@@ -45,16 +58,18 @@ const CollapsedMenu = styled.ol`
   z-index: 10;
   list-style: none;
   right: 0;
-  top: 0;
+  top: 1.7rem;
   text-align: right;
   background-color: white;
-  padding: 100px 50px;
-  padding-right: 1rem;
-  margin: 0;
+  padding-left: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 1rem;
+  padding-right: 2rem;
+  border: 2px solid black;
   box-sizing: border-box;
-  height: 100vh;
-  box-shadow: rgba(107, 107, 107, 0.1) -20px 0px 20px;
-  animation: ${slide} 0.3s ease-in;
+  /* height: 100vh; */
+  /* box-shadow: rgba(107, 107, 107, 0.1) -20px 0px 20px; */
+  /* animation: ${slide} 0.3s ease-in; */
 `;
 
 const Menu = styled.ol`
@@ -66,6 +81,7 @@ const Menu = styled.ol`
 const MenuItem = styled.li`
   font-size: 1.3rem;
   text-decoration: none;
+  text-align: left;
 `;
 
 interface LinkWrapperProps {
@@ -111,9 +127,9 @@ const useOutsideAlert = (
 
 const Header = () => {
   const [menuIsActive, setMenuIsActive] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 750);
   const menuRef = useRef<HTMLOListElement>(null);
-  const menuIcon = useRef<HTMLButtonElement>(null);
+  const menuIcon = useRef<HTMLDivElement>(null);
 
   const handleResize = () => {
     if (window.innerWidth < 750) {
@@ -142,21 +158,23 @@ const Header = () => {
       {isMobile ? (
         <>
           {menuIsActive ? (
-            <MenuIcon
+            <MenuIconOpen
               ref={menuIcon}
-              onClick={() => setMenuIsActive(!menuIsActive)}
-              className="material-icons"
+              onClick={() => setMenuIsActive(menuIsActive)}
             >
-              menu_open
-            </MenuIcon>
+              <MenuIconClosedItem></MenuIconClosedItem>
+              <MenuIconClosedItem></MenuIconClosedItem>
+            </MenuIconOpen>
           ) : (
-            <MenuIcon
+            <MenuIconClosed
               ref={menuIcon}
               onClick={() => setMenuIsActive(!menuIsActive)}
-              className="material-icons"
             >
-              menu
-            </MenuIcon>
+              <MenuIconClosedItem></MenuIconClosedItem>
+              <MenuIconClosedItem></MenuIconClosedItem>
+              <MenuIconClosedItem></MenuIconClosedItem>
+              <MenuIconClosedItem></MenuIconClosedItem>
+            </MenuIconClosed>
           )}
           {menuIsActive && (
             <CollapsedMenu ref={menuRef}>
