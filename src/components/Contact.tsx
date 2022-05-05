@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
 const Title = styled.h3`
-  font-size: 20px;
+  font-size: 17px;
   font-weight: 500;
   margin: 0;
 `;
 
 const Paragraph = styled.p`
   margin-top: 0.2rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 17px;
 `;
 
 const Contact = () => {

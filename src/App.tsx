@@ -12,7 +12,7 @@ const AppWrapper = styled.div`
   flex-direction: column;
   height: 100vh;
   width: 90vw;
-  max-width: 1200px;
+  max-width: 1000px;
   margin-inline: auto;
 `;
 

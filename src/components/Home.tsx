@@ -41,8 +41,8 @@ const CarouselItem = styled.div<CarouselItemProps>`
 const Image = styled.img`
   display: block;
   margin-inline: auto;
-  max-width: 90%;
-  max-height: 90%;
+  max-width: 100%;
+  max-height: 100%;
   object-fit: cover;
   cursor: pointer;
 `;

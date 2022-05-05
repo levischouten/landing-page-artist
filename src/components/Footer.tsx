@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const FooterWrapper = styled.footer`
-  height: 120px;
+  height: 80px;
   text-align: right;
   font-size: 12px;
 `;

@@ -2,6 +2,7 @@ import { MutableRefObject, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 import { useLocation } from "react-router-dom";
+import { ReactComponent as Logo } from "./icons/logo.svg";
 
 const slide = keyframes`
   from {
@@ -25,7 +26,7 @@ const HeaderWrapper = styled.header`
 
 const Title = styled(Link)`
   font-weight: 700;
-  font-size: 30px;
+  font-size: 19px;
   text-decoration: none;
   color: black;
 `;
@@ -58,18 +59,15 @@ const CollapsedMenu = styled.ol`
   z-index: 10;
   list-style: none;
   right: 0;
-  top: 1.7rem;
+  top: 27px;
   text-align: right;
   background-color: white;
-  padding-left: 1rem;
-  padding-top: 0.5rem;
-  padding-bottom: 1rem;
-  padding-right: 2rem;
+  padding-left: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 20px;
   border: 2px solid black;
   box-sizing: border-box;
-  /* height: 100vh; */
-  /* box-shadow: rgba(107, 107, 107, 0.1) -20px 0px 20px; */
-  /* animation: ${slide} 0.3s ease-in; */
 `;
 
 const Menu = styled.ol`
@@ -79,9 +77,10 @@ const Menu = styled.ol`
 `;
 
 const MenuItem = styled.li`
-  font-size: 1.3rem;
+  font-size: 17px;
   text-decoration: none;
   text-align: left;
+  margin-bottom: 5px;
 `;
 
 interface LinkWrapperProps {
@@ -94,7 +93,6 @@ const LinkWrapper = styled(Link)<LinkWrapperProps>`
   color: ${(props) => (props.$active ? "black" : "#959595")};
   padding-bottom: 5px;
   font-weight: ${(props) => (props.$active ? 400 : 300)};
-  font-size: 20px;
 
   &:hover {
     text-underline-offset: 3px;
@@ -154,7 +152,10 @@ const Header = () => {
   );
   return (
     <HeaderWrapper>
-      <Title to="/">Ivo Schouten</Title>
+      <Title to="/">
+        Ivo Schouten
+        {/* <Logo /> */}
+      </Title>
       {isMobile ? (
         <>
           {menuIsActive ? (
