@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/landing-page-artist/static/css/main.27f57a5c.css",
-    "main.js": "/landing-page-artist/static/js/main.d041ae8d.js",
+    "main.js": "/landing-page-artist/static/js/main.6ef1db1d.js",
     "static/media/SpaceGrotesk-Regular.otf": "/landing-page-artist/static/media/SpaceGrotesk-Regular.d6feaf8c59c1d262b37e.otf",
     "static/media/SpaceGrotesk-Medium.otf": "/landing-page-artist/static/media/SpaceGrotesk-Medium.9cf68d36a9433d5d427e.otf",
     "static/media/SpaceGrotesk-Bold.otf": "/landing-page-artist/static/media/SpaceGrotesk-Bold.84491a7b22b78320f103.otf",
     "static/media/SpaceGrotesk-Light.otf": "/landing-page-artist/static/media/SpaceGrotesk-Light.4f28aa818ef836a4d0bf.otf",
     "index.html": "/landing-page-artist/index.html",
     "main.27f57a5c.css.map": "/landing-page-artist/static/css/main.27f57a5c.css.map",
-    "main.d041ae8d.js.map": "/landing-page-artist/static/js/main.d041ae8d.js.map"
+    "main.6ef1db1d.js.map": "/landing-page-artist/static/js/main.6ef1db1d.js.map"
   },
   "entrypoints": [
     "static/css/main.27f57a5c.css",
-    "static/js/main.d041ae8d.js"
+    "static/js/main.6ef1db1d.js"
   ]
 }
