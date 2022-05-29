@@ -9,7 +9,7 @@ const MainWrapper = styled.main`
   display: block;
   overflow: auto;
   width: 100%;
-  max-width: 750px;
+  max-width: 600px;
   margin-inline: auto;
 `;
 

@@ -11,14 +11,19 @@ const Paragraph = styled.p`
   margin-bottom: 17px;
 `;
 
+const Link = styled.a`
+  color: black;
+  text-decoration: none;
+`
+
 const Contact = () => {
   return (
     <div>
       <Title>email</Title>
-      <Paragraph>ivoschouten.werk@gmail.com</Paragraph>
+      <Paragraph><Link href="mailto:ivoschouten.werk@gmail.com" target="_blank">ivoschouten.werk@gmail.com</Link></Paragraph>
 
       <Title>instagram</Title>
-      <Paragraph>@_ivoschouten</Paragraph>
+      <Paragraph><Link href="https://instagram.com/_ivoschouten" target="_blank">@_ivoschouten</Link></Paragraph>
 
       <Title>website</Title>
       <Paragraph>Levi Schouten</Paragraph>

@@ -20,8 +20,8 @@ const Carousel = styled.div`
   position: relative;
   display: flex;
   align-items: stretch;
-  width: 90%;
-  height: 95%;
+  width: 100%;
+  height: auto;
   margin-inline: auto;
 `;
 
@@ -34,14 +34,13 @@ interface CarouselItemProps {
 }
 
 const CarouselItem = styled.div<CarouselItemProps>`
-  animation: ${fade} 1.5s ease-in-out;
+  animation: ${fade} 1s ease-in-out;
   display: ${(props) => (props.active ? "block" : "none")};
   margin-inline: auto;
 `;
 
 const Image = styled.img`
   display: block;
-  width: 500px;
   max-width: 100%;
   margin-inline: auto;
   object-fit: cover;

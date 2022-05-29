@@ -20,7 +20,7 @@ const HeaderWrapper = styled.header`
   justify-content: space-between;
   align-items: center;
   position: relative;
-  margin-bottom: 60px;
+  margin-bottom: 25px;
 `;
 
 const Title = styled(Link)`
