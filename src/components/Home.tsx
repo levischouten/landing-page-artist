@@ -20,8 +20,9 @@ const Carousel = styled.div`
   position: relative;
   display: flex;
   align-items: stretch;
-  width: 100%;
-  max-width: 100%;
+  width: 90%;
+  height: 95%;
+  margin-inline: auto;
 `;
 
 const CarouselItems = styled.div`
@@ -40,9 +41,9 @@ const CarouselItem = styled.div<CarouselItemProps>`
 
 const Image = styled.img`
   display: block;
-  margin-inline: auto;
+  width: 500px;
   max-width: 100%;
-  max-height: 100%;
+  margin-inline: auto;
   object-fit: cover;
   cursor: pointer;
 `;
@@ -61,10 +62,17 @@ const Home = () => {
   // };
 
   const carouselItems = [
-    "./images/3X3-1_web.jpg",
-    "./images/3X3-2_web.jpg",
-    "./images/150-1_web.jpg",
-    "./images/150-2_web.jpg",
+    "./images/overlay_web.jpg",
+    "./images/overlay-detail_web.jpg",
+    "./images/overlay2_web.jpg",
+    "./images/overlay2-detail_web.jpg",
+    "./images/overlay3_web.jpg",
+    "./images/Pieter Calandlaan 1_web.jpg",
+    "./images/Pieter Calandlaan 3_web.jpg",
+    "./images/Pieter Calandlaan 4_web.jpg",
+    "./images/Ruysdaelkade 1_web.jpg",
+    "./images/Ruysdaelkade 2_web.jpg",
+    "./images/street concrete mix_web.jpg",
   ].map((item, index) => (
     <CarouselItem key={item} active={index === slideIndex}>
       <Image alt="wallpaper" src={item} onClick={incrementSlideIndex}></Image>

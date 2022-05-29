@@ -2,7 +2,6 @@ import { MutableRefObject, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 import { useLocation } from "react-router-dom";
-import { ReactComponent as Logo } from "./icons/logo.svg";
 
 const slide = keyframes`
   from {
@@ -29,6 +28,7 @@ const Title = styled(Link)`
   font-size: 19px;
   text-decoration: none;
   color: black;
+  /* font-feature-settings: "ss05" 1; */
 `;
 
 const MenuIcon = styled.div`
@@ -154,7 +154,6 @@ const Header = () => {
     <HeaderWrapper>
       <Title to="/">
         Ivo Schouten
-        {/* <Logo /> */}
       </Title>
       {isMobile ? (
         <>
